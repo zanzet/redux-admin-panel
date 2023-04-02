@@ -11,6 +11,12 @@
       "name": "Морской герой",
       "description": "Как аквамен, но не из DC",
       "element": "water"
+    },
+    {
+      "id": "41a7665b-7010-4225-9a0a-a534b137cb69",
+      "name": "zanzet",
+      "description": "пригать",
+      "element": "fire"
     }
   ],
   "filters": [
