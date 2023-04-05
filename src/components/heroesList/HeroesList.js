@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import { createSelector } from 'reselect'
 
-import { fetchHeroes, heroDeleted } from '../../actions';
+import { heroesDeleted } from './heroesSlice'
+import { fetchHeroes  } from '../../actions';
+
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
@@ -18,7 +20,6 @@ const HeroesList = () => {
         (state) => state.heroes.heroes,
         (filter, heroes) => {
             if (filter === 'all') {
-                console.log('render');
                 return heroes;
             } else {
                 return heroes.filter(item => item.element === filter);
@@ -33,11 +34,12 @@ const HeroesList = () => {
 
     useEffect(() => {
         dispatch(fetchHeroes(request));
+        // eslint-disable-next-line  
     }, []);
 
     const onDelete = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, "DELETE")
-            .then(dispatch(heroDeleted(id)))
+            .then(dispatch(heroesDeleted(id)))
             .catch(err => console.log(err));
         // eslint-disable-next-line  
     }, [request]);
